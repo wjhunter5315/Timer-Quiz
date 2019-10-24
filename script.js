@@ -34,8 +34,17 @@ $(document).ready(function() {
     
     }
     
-    $(".begin").on("click", function() {
+    $(".btn").on("click", function() {
+        for (var i = 0; i < questions; i++) {
+            var questionDiv = document.createElement(".questionBox");
+            questionDiv = questions[0].title;
+            console.log(questionDiv);
 
+            var choicesDiv = document.createElement("answerBox");
+            choicesDiv = questions[0].choices;
+            console.log(choicesDiv);
+        }
+        
 
     })
 })
