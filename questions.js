@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var score;
     var timer;
-    var timeLeft;
+    var timeLeft = 0;
     var answersRight;
     var answersWrong;
 
@@ -41,39 +41,53 @@ $(document).ready(function() {
     alert("click 'Begin' to start the quiz.");
     
     }
-    
+    begin();
     $(".btn").on("click", function() {
-        for (var i = 0; i < questions.length; i++) {
+        $("question-box").empty();
+        var questionDiv = $("<div>");
+        questionDiv.addClass("question-box");
+        questionDiv.attr("current-question", questions[0].title);
+        questionDiv.text(questions[0].title);
+        $(".question-box").append(questionDiv);
+        console.log(questionDiv);
 
-            var questionDiv = $("<div>");
-            questionDiv.addClass("question-box");
-            questionDiv.attr("current-question", questions[i].title);
-            questionDiv.text(questions[i].title);
-            $(".question-box").append(questionDiv);
-            console.log(questionDiv);
+        var choicesDiv = $("<button>");
+        choicesDiv.addClass("choices-box");
+        choicesDiv.attr("current-choices", questions[0].choices);
+        choicesDiv.text(questions[0].choices);
+        $(".choices-box").append(choicesDiv);
+        console.log(choicesDiv);
+        // for (var i = 0; i < questions.length; i++) {
 
-            var choicesDiv = $("<button>");
-            choicesDiv.addClass("choices-box");
-            choicesDiv.attr("current-choices", questions[i].choices);
-            choicesDiv.text(questions[i].choices);
-            $(".choices-box").append(choicesDiv);
-            console.log(choicesDiv);
-        }
+        //     var questionDiv = $("<div>");
+        //     questionDiv.addClass("question-box");
+        //     questionDiv.attr("current-question", questions[i].title);
+        //     questionDiv.text(questions[i].title);
+        //     $(".question-box").append(questionDiv);
+        //     console.log(questionDiv);
+        // }
+        // for (var i = 0; i < questions.length; i++) {
+        //     var choicesDiv = $("<li>");
+        //     choicesDiv.addClass("choices-box");
+        //     choicesDiv.attr("current-choices", questions[i].choices);
+        //     choicesDiv.text(questions[i].choices);
+        //     $(".choices-box").append(choicesDiv);
+        //     console.log(choicesDiv);
+            
+        
         
 
     })
     
 
-// Update the count down every 1 second
-    var x = setInterval(function() {
+
+    $(".btn").on("click", function() {
+        setInterval(function() {
+            var timeLeft = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("timer-box").innerHTML = timeLeft + "s ";
+        })
+    }, 75000)
     
-        var seconds = Math.floor(1000 * 75 / 1000);
-    
-  // Output the result in an element with id="demo"
-        document.getElementById("timer-box").innerHTML = seconds + "s ";
-    
-  // If the count down is over, write some text 
-    }
 })
 
 
